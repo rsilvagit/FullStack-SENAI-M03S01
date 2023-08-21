@@ -1,0 +1,15 @@
+#cria um ambinete local
+services: # define os serviços a ser executados no container
+  db: # serviço de db
+    image: postgres #imagem do postgres
+    restart: always # sempre que eu executar esse arquivo ele vai reinicializar
+    environment:
+      POSTEGRES_PASSWORD: 12345
+    #volumes: # espaço dentro do container para dados
+       #- postgres-data:/var/lib/postgresql/data
+  app:
+    image: ex4-dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - db # antes de execiutar a imagem app é executada a imagem db
